@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💪 센터 소개 - 상명대 K동 헬스장</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="main.html" class="header-link">
+        <h1>상명대 K동 헬스장</h1>
+      </a>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="introduce.html" class="active">센터 소개</a></li>
+        <li><a href="notice.html">공지 사항</a></li>
+        <li><a href="exercise.html">운동 안내</a></li>
+        <li><a href="#" id="mypage-link">개인 페이지</a></li>
+        <li><a href="contact.html">고객 센터</a></li>
+      </ul>
+    </nav>
+
+    <main id="introduce-main">
+      <h2>센터 소개</h2>
+
+      <section class="info-section location-section">
+        <h3>📍 센터 위치</h3>
+        <div id="map"></div>
+      </section>
+
+      <section class="info-section basic-info-section">
+        <h3>📝 운영 정보</h3>
+        <div class="info-grid small">
+          <div class="info-card">
+            <h4>사용 시간</h4>
+            <p>평일: 09:00 - 22:00</p>
+            <p>주말/공휴일: 휴무</p>
+          </div>
+          <div class="info-card">
+            <h4>연락처</h4>
+            <p>041-555-1234</p>
+            <p class="contact-note">헬스장 담당자 직통</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="info-section holiday-calendar-section">
+        <h3>🗓️ 휴무일 달력</h3>
+        <div id="calendar-container">
+          <div class="calendar-header">
+            <button id="prev-month-btn">&lt;</button>
+            <h4 id="current-month-year"></h4>
+            <button id="next-month-btn">&gt;</button>
+          </div>
+          <ul class="calendar-days">
+            <li>일</li>
+            <li>월</li>
+            <li>화</li>
+            <li>수</li>
+            <li>목</li>
+            <li>금</li>
+            <li>토</li>
+          </ul>
+          <ul class="calendar-dates"></ul>
+        </div>
+        <p class="holiday-note-text">
+          * 매주 토요일, 일요일은 정기 휴무입니다. 그 외 공휴일은 달력에
+          표시됩니다.
+        </p>
+      </section>
+
+      <section class="info-section trainer-detail-section" id="trainers">
+        <h3>👨‍🏫 트레이너 상세 소개</h3>
+        <div id="trainer-detail-list"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 상명대 K동 헬스장. All rights reserved.</p>
+    </footer>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&callback=initMap"
+      async
+      defer
+    ></script>
+    <script src="introduce.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const mypageLink = document.getElementById('mypage-link');
+        const LOGIN_KEY = 'isLoggedIn'; // 로그인 상태를 저장하는 키
+
+        if (mypageLink) {
+          mypageLink.addEventListener('click', function (event) {
+            event.preventDefault(); // 기본 이동 동작 방지
+
+            // Local Storage에서 로그인 상태를 확인합니다.
+            const isLoggedIn = localStorage.getItem(LOGIN_KEY) === 'true';
+
+            if (isLoggedIn) {
+              window.location.href = 'mypage.html'; // 로그인 상태면 마이페이지로 이동
+            } else {
+              window.location.href = 'login.html'; // 아니면 로그인 페이지로 이동
+            }
+          });
+        }
+      });
+      // 트레이너 상세 섹션으로 스크롤을 위한 함수 호출
+      // (initMap 로드 이후에 실행되거나, DOMContentLoaded 이후에 실행됨)
+      if (typeof scrollToTrainer === 'function') {
+        scrollToTrainer();
+      }
+    </script>
+  </body>
+</html>

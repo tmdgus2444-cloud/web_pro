@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💪 운동 안내: 기구 사용법 - 상명대 K동 헬스장</title>
+    <!-- 기존 공통 스타일과 새로운 페이지 스타일을 모두 연결 -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="exercise.css" />
+    <!-- 폰트 아이콘 (임의) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="main.html" class="header-link">
+        <h1>상명대 K동 헬스장</h1>
+      </a>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="introduce.html">센터 소개</a></li>
+        <li><a href="notice.html">공지 사항</a></li>
+        <!-- 이 링크는 사용자가 요청한 파일 이름 exercise.html로 설정 -->
+        <li><a href="exercise.html" class="active">운동 안내</a></li>
+        <li><a href="mypage.html">개인 페이지</a></li>
+        <li><a href="contact.html">고객 센터</a></li>
+      </ul>
+    </nav>
+
+    <main id="exercise-main">
+      <h2>🏋️‍♀️ 운동 기구 사용법 안내</h2>
+      <p class="description-text">
+        헬스장에 비치된 주요 운동 기구 3종의 올바른 사용법과 운동 효과를
+        확인해보세요.
+      </p>
+
+      <!-- 1. 기구 선택 목록 -->
+      <section class="equipment-selection-section">
+        <h3>기구 선택</h3>
+        <div class="equipment-list-container" id="equipment-list">
+          <!-- JS를 통해 운동 기구 목록이 여기에 렌더링됩니다. -->
+        </div>
+      </section>
+
+      <!-- 2. 기구 상세 설명 뷰 (기본적으로 숨겨져 있음) -->
+      <section
+        class="equipment-detail-section"
+        id="equipment-detail-view"
+        style="display: none"
+      >
+        <button id="back-to-list-btn" class="back-btn">
+          <i class="fas fa-chevron-left"></i> 목록으로 돌아가기
+        </button>
+
+        <h3 id="detail-title"></h3>
+
+        <!-- 상세 설명 콘텐츠 (글/동영상/모형) -->
+        <div class="detail-content-grid">
+          <!-- 2-1. 사용 방법 (글 & 동영상) -->
+          <div class="instruction-area">
+            <h4>📖 사용 방법 및 주의 사항 (글)</h4>
+            <div id="detail-text-instructions"></div>
+
+            <h4>🎥 따라 하기 영상 (동영상)</h4>
+            <!-- YouTube 임베드 Placeholder -->
+            <div class="video-container">
+              <iframe
+                id="detail-video"
+                width="100%"
+                height="315"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- 2-2. 운동 효과 설명 (신체 모형/근육 이미지) -->
+          <div class="muscle-model-area">
+            <h4>💪 운동 효과 및 타겟 근육</h4>
+            <div id="detail-muscle-model">
+              <!-- JS에서  태그와 설명이 삽입됩니다. -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- JS 파일을 로드하여 동적 기능 활성화 -->
+    <script src="exercise.js"></script>
+  </body>
+</html>

@@ -1,0 +1,267 @@
+/* notice.css */
+
+/* ==================================================== */
+/* 2. 공지 목록 스타일 */
+/* ==================================================== */
+
+.notice-list-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.notice-card {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.notice-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.notice-type {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  min-width: 50px;
+  text-align: center;
+  margin-right: 15px;
+}
+
+/* 타입별 색상 지정 */
+.notice-type-공지 {
+  background-color: #007bff; /* 파랑 */
+}
+
+.notice-type-이벤트 {
+  background-color: #ff5722; /* 주황 */
+}
+
+.notice-type-모집 {
+  background-color: #28a745; /* 초록 */
+}
+
+.notice-title {
+  flex-grow: 1; /* 제목이 남은 공간을 차지하도록 */
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notice-date {
+  color: #6c757d;
+  font-size: 14px;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* ==================================================== */
+/* 3. 공지 상세 스타일 */
+/* ==================================================== */
+
+.notice-detail-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.back-btn:hover {
+  background-color: #5a6268;
+}
+
+.detail-content h3 {
+  color: #007bff;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.detail-date {
+  text-align: right;
+  color: #999;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.detail-content p {
+  margin-bottom: 15px;
+}
+
+/* 상세 내용 섹션 스타일 */
+.notice-content-section h4 {
+  color: #333;
+  border-left: 5px solid #007bff;
+  padding-left: 10px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.highlight-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  border: 1px dashed #007bff;
+  padding: 10px;
+  background-color: #f7faff;
+  border-radius: 5px;
+}
+
+/* 테이블 스타일 (가격표 등) */
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+}
+
+.price-table th,
+.price-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.price-table th {
+  background-color: #e9ecef;
+  color: #333;
+}
+
+.discount-item {
+  font-weight: bold;
+  color: #ff5722;
+}
+
+/* 이벤트 버튼 스타일 */
+.coupon-btn {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.coupon-btn:hover {
+  background-color: #e04a1b;
+  transform: translateY(-1px);
+}
+
+/* ==================================================== */
+/* 4. 커스텀 모달 스타일 */
+/* ==================================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: modal-open 0.3s ease-out;
+}
+
+@keyframes modal-open {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content h4 {
+  color: #007bff;
+  font-size: 26px;
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  white-space: pre-wrap; /* \n 처리 허용 */
+}
+
+.modal-ok-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.modal-ok-btn:hover {
+  background-color: #0056b3;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #999;
+}
+
+.close-btn:hover {
+  color: #333;
+}
