@@ -116,7 +116,7 @@ main {
 main h2 {
   text-align: center;
   font-size: 32px;
-  color: #333; /* Default text color for titles on white background */
+  color: #ffffff; /* Default text color for titles on white background */
   padding: 0;
   margin: 30px auto;
   max-width: 800px;

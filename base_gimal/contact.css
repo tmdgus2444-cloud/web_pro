@@ -12,7 +12,7 @@
 #contact-main h2 {
   text-align: center;
   font-size: 32px;
-  color: #007bff; /* 파란색 유지 */
+  color: #ffffff; /* 파란색 유지 */
   margin-bottom: 10px;
   padding: 15px 0;
 }
@@ -20,17 +20,17 @@
 /* 🌟 수정: 메인 배경 위 설명 텍스트를 밝은 색으로 변경 */
 .description-text {
   text-align: center;
-  color: #f0f0f0; 
+  color: #f0f0f0;
   margin-bottom: 40px;
 }
 
 /* 🌟 수정: 섹션 제목을 밝은 색으로 변경 */
 .contact-section h3 {
-  border-left: 5px solid #ff5722; 
+  border-left: 5px solid #ff5722;
   padding-left: 15px;
   margin-top: 50px;
   margin-bottom: 25px;
-  color: #fff; 
+  color: #fff;
 }
 
 /* ==================================================== */
@@ -63,7 +63,7 @@
   display: block;
   padding: 18px 25px;
   font-weight: bold;
-  color: #333; 
+  color: #333;
   user-select: none;
   position: relative;
   list-style: none;
@@ -72,11 +72,11 @@
 .faq-item summary::-webkit-details-marker,
 .faq-item summary::marker {
   display: none;
-  content: "";
+  content: '';
 }
 
 .faq-question::after {
-  content: '\f078'; 
+  content: '\f078';
   font-family: 'Font Awesome 6 Free';
   font-weight: 900;
   position: absolute;
@@ -89,7 +89,7 @@
 
 .faq-item[open] .faq-question::after {
   transform: translateY(-50%) rotate(180deg);
-  color: #ff5722; 
+  color: #ff5722;
 }
 
 /* FAQ 답변 (흰색 배경 위) - 어두운 색상 유지 */
@@ -103,8 +103,14 @@
 }
 
 @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==================================================== */
@@ -128,81 +134,81 @@
 
 /* 카드 내부 텍스트는 흰색 배경 위이므로 어두운 색상 유지 */
 .info-card h4 {
-    color: #007bff;
-    margin-top: 0;
+  color: #007bff;
+  margin-top: 0;
 }
 
 .contact-detail {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
 }
 
 .contact-sub-text {
-    font-size: 14px;
-    color: #6c757d;
+  font-size: 14px;
+  color: #6c757d;
 }
 
 /* ==================================================== */
 /* 4. 1:1 온라인 문의 섹션 스타일 */
 /* ==================================================== */
 .inquiry-form {
-    background: #ffffff; /* 흰색 폼 배경 유지 */
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: #ffffff; /* 흰색 폼 배경 유지 */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* 🌟 수정: 폼 레이블을 밝은 색으로 변경 (폼 외부에서 사용될 경우 대비) */
 .inquiry-form-section label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #fff; 
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #fff;
 }
 
 /* 폼 입력 필드와 버튼 스타일은 기존 스타일 유지 */
 .input-group input,
 .input-group select,
 .input-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-size: 16px;
-    margin-bottom: 15px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-bottom: 15px;
 }
 
 /* 🌟 수정: 성공 메시지 텍스트를 밝은 색으로 변경 */
 .success-message {
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 8px;
-    background-color: rgba(40, 167, 69, 0.9); /* 성공 녹색 배경 */
-    color: #fff;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  background-color: rgba(40, 167, 69, 0.9); /* 성공 녹색 배경 */
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* 공통 액션 버튼 스타일 (style.css 또는 다른 공통 CSS 파일에 있을 것으로 가정) */
 .action-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .primary-btn {
-    background-color: #007bff;
-    color: white;
+  background-color: #007bff;
+  color: white;
 }
 
 .primary-btn:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }

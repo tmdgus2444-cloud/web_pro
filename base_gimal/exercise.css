@@ -12,13 +12,13 @@
 #exercise-main h2 {
   text-align: center;
   font-size: 30px;
-  color: #007bff;
+  color: white; /* 운동 기구 사용법 안내 (h2)를 흰색으로 변경 */
   margin-bottom: 10px;
 }
 
 .description-text {
   text-align: center;
-  color: #555;
+  color: white; /* 설명 문구를 흰색으로 변경 */
   margin-bottom: 40px;
 }
 
@@ -32,6 +32,10 @@
   margin-top: 30px;
   margin-bottom: 20px;
   color: #333;
+}
+
+.equipment-selection-section h3 {
+  color: white; /* 기구 선택 (h3)을 흰색으로 변경 */
 }
 
 .equipment-list-container {
@@ -59,14 +63,14 @@
 
 .equipment-card h4 {
   font-size: 24px;
-  color: #007bff;
+  color: #ff5722; /* 목록의 기구 이름 (h4)를 주황색으로 변경 */
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .equipment-card .icon-placeholder {
   font-size: 40px;
-  color: #ff5722;
+  color: #007bff; /* 목록의 아이콘을 파란색으로 변경 */
   margin-bottom: 10px;
 }
 
@@ -83,7 +87,8 @@
 
 .equipment-detail-section h3 {
   font-size: 28px;
-  color: #007bff;
+  /* (수정됨: 주황색으로 변경) */
+  color: #ff5722;
   text-align: center;
   margin-top: 10px;
   margin-bottom: 30px;
