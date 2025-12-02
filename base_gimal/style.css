@@ -116,7 +116,7 @@ main {
 main h2 {
   text-align: center;
   font-size: 32px;
-  color: #ffffff; /* Default text color for titles on white background */
+  color: #333; /* Default text color for titles on white background */
   padding: 0;
   margin: 30px auto;
   max-width: 800px;
@@ -481,12 +481,66 @@ footer {
   text-align: center;
 }
 
-/* 1. 위치 섹션 (지도) 스타일 */
+/* ---------------------------------------------------- */
+/* 1. 위치 섹션 (지도) 스타일 - 수정 및 추가됨 */
+/* ---------------------------------------------------- */
+
+/* 🌟 신규 스타일: 맵과 안내를 담을 컨테이너 */
+.location-content {
+  display: flex;
+  justify-content: space-between; /* 지도와 안내글을 양 끝으로 배치 */
+  gap: 30px; /* 항목 사이의 간격 */
+  max-width: 900px; /* 전체 컨테이너 최대 너비 지정 */
+  margin: 0 auto; /* 중앙 정렬 */
+  align-items: flex-start; /* 지도와 안내글을 위쪽에 맞춤 */
+}
+
+/* 🌟 지도 컨테이너 크기 수정: 전체 너비의 약 65% 차지 */
 #map {
-  height: 450px;
-  width: 100%;
+  flex: 0 0 65%; /* 너비 65% 고정 */
+  height: 400px; /* 높이를 450px에서 400px로 약간 줄임 */
+  width: auto; /* flex 기준에 따름 */
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* iframe에도 border-radius 적용 */
+#map iframe {
+  border-radius: 8px;
+}
+
+/* 🌟 신규 스타일: 찾아오는 길 안내 컨테이너 */
+.location-guide {
+  flex: 1; /* 남은 공간 (35%)을 모두 차지 */
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  text-align: left;
+}
+
+.location-guide h4 {
+  color: #007bff;
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+.location-guide ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.location-guide ul li {
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #333;
+}
+
+.location-guide strong {
+  color: #ff5722;
 }
 
 /* 2. 운영 정보 섹션 스타일 (2개 카드) */

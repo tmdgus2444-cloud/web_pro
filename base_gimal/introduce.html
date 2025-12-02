@@ -28,7 +28,39 @@
 
       <section class="info-section location-section">
         <h3>📍 센터 위치</h3>
-        <div id="map"></div>
+        <div class="location-content">
+          <div id="map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10553.839533034434!2d127.17832973313453!3d36.82945697048475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b2f1bd79c32ab%3A0x241af6ab8a0a12c1!2z7IOB66qF64yA7ZWZ6rWQIOyynOyViOy6oO2NvOyKpA!5e1!3m2!1sko!2skr!4v1764684726377!5m2!1sko!2skr"
+              width="100%"
+              height="400"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
+          <div class="location-guide">
+            <h4>🗺️ 찾아오는 길</h4>
+            <ul>
+              <li><strong>주소:</strong> 상명대학교 K동 1층</li>
+              <li><strong>지하철:</strong> 천안역 (1호선) 하차 후 택시 10분</li>
+              <li>
+                <strong>버스:</strong> K동 정류장 (330번, 800번) 하차 후 도보
+                2분
+              </li>
+              <li>
+                <strong>주차:</strong> K동 지하 주차장 이용 가능 (헬스장 이용 시
+                2시간 무료)
+              </li>
+              <li>
+                <strong>특이사항:</strong> K동 건물 후문에 전용 출입구가
+                있습니다.
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <section class="info-section basic-info-section">
@@ -51,9 +83,9 @@
         <h3>🗓️ 휴무일 달력</h3>
         <div id="calendar-container">
           <div class="calendar-header">
-            <button id="prev-month-btn">&lt;</button>
+            <button id="prev-month-btn"><</button>
             <h4 id="current-month-year"></h4>
-            <button id="next-month-btn">&gt;</button>
+            <button id="next-month-btn">></button>
           </div>
           <ul class="calendar-days">
             <li>일</li>
@@ -79,7 +111,7 @@
     </main>
 
     <footer>
-      <p>&copy; 2025 상명대 K동 헬스장. All rights reserved.</p>
+      <p>© 2025 상명대 K동 헬스장. All rights reserved.</p>
     </footer>
 
     <script
