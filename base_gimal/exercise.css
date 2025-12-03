@@ -53,25 +53,103 @@
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
   border: 2px solid transparent;
+  /* ✅ 내용이 배경 이미지 위에 올라오도록 상대 위치 설정 */
+  position: relative;
+  /* 🚩 추가: 버튼 크기를 '수정전' 크기로 유지하기 위한 최소 높이 설정 */
+  min-height: 150px;
 }
 
+/* ✅ 카드 내용이 배경 이미지 위에서 잘 보이도록 스타일 조정 */
+.equipment-card > * {
+  position: relative; /* 내용이 배경 이미지 위에 오도록 */
+  z-index: 2; /* 배경보다 높은 z-index */
+  color: white; /* 텍스트 색상을 흰색으로 기본 설정 (이미지 배경의 경우) */
+}
+
+/* 기본 카드 호버 스타일 */
 .equipment-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  border: 2px solid #007bff;
+  /* border는 이미지가 있을 때 잘 안보일 수 있으므로 흰색 테두리로 변경 */
+  border: 2px solid white;
 }
 
+/* 일반 카드의 텍스트 색상 (이미지가 없는 다른 카드들을 위해 유지) */
 .equipment-card h4 {
   font-size: 24px;
-  color: #ff5722; /* 목록의 기구 이름 (h4)를 주황색으로 변경 */
+  color: #ff5722;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .equipment-card .icon-placeholder {
   font-size: 40px;
-  color: #007bff; /* 목록의 아이콘을 파란색으로 변경 */
+  color: #007bff;
   margin-bottom: 10px;
+}
+
+/* ==================================================== */
+/* 4. [수정/통합] 운동 기구 배경 이미지 스타일 공통 설정 */
+/* ==================================================== */
+
+/* 🚩 공통 배경 스타일 (벤치, 스쿼트, 데드 모두 적용) */
+.bench-press-bg,
+.squat-bg,
+.deadlift-bg {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: white; /* 텍스트 색상을 흰색으로 */
+  overflow: hidden; /* 모서리 밖으로 배경이 삐져나오는 것 방지 */
+}
+
+/* 벤치 프레스 배경 */
+.bench-press-bg {
+  background-image: url('bench_press.jpg');
+}
+
+/* 🚩 스쿼트 배경 추가 */
+.squat-bg {
+  background-image: url('squatjpg.jpg');
+}
+
+/* 🚩 데드리프트 배경 추가 */
+.deadlift-bg {
+  background-image: url('dead_lift.jpg');
+}
+
+/* 벤치/스쿼트/데드리프트 카드 내부의 세부 스타일 */
+.bench-press-bg h4,
+.squat-bg h4,
+.deadlift-bg h4 {
+  color: white; /* 카드 이름 흰색으로 변경 */
+}
+
+.bench-press-bg p,
+.squat-bg p,
+.deadlift-bg p {
+  color: #eee; /* 설명 텍스트는 약간 연하게 */
+}
+
+/* 이미지가 어두워지도록 오버레이 추가 (공통 적용) */
+.bench-press-bg::before,
+.squat-bg::before,
+.deadlift-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* 40% 투명도의 검은색 오버레이 */
+  border-radius: 12px; /* 카드와 동일한 둥글기 적용 */
+  z-index: 1; /* 내용(z-index: 2)보다 아래에 위치 */
+}
+
+.bench-press-bg:hover::before,
+.squat-bg:hover::before,
+.deadlift-bg:hover::before {
+  background-color: rgba(0, 0, 0, 0.6); /* 호버 시 오버레이를 더 어둡게 */
 }
 
 /* ==================================================== */
@@ -132,6 +210,15 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   border: 1px dashed #ddd;
+}
+
+/* 🚩 추가: 상세 뷰에 삽입된 이미지 스타일 */
+.muscle-model-area .muscle-model-image {
+  width: 100%; /* 부모 컨테이너 너비에 맞춤 */
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  margin-bottom: 15px; /* 설명 텍스트와 분리 */
 }
 
 /* 동영상 컨테이너 (반응형 비율 유지) */

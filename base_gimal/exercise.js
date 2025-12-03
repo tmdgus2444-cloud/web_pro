@@ -8,9 +8,10 @@ const equipmentData = [
   {
     id: 'bench-press',
     name: '벤치 프레스',
-    icon: 'fas fa-dumbbell',
+    icon: '', // ⚠️ 수정: 덤벨 아이콘을 제거하고 빈 문자열로 변경
     description: '상체 근력을 키우는 대표적인 운동 기구입니다.',
-    videoUrl: 'https://www.youtube.com/embed/gL16Iq6e68I', // 임의의 YouTube 영상 URL
+    // 🚩 벤치 프레스 영상 URL (이전 요청의 최종 URL)
+    videoUrl: 'https://www.youtube.com/embed/A2kHURY746E',
     instructions: `
       <ol>
         <li>벤치에 누워 바벨을 잡고, 발은 바닥에 단단히 고정합니다.</li>
@@ -22,60 +23,71 @@ const equipmentData = [
       <p class="highlight-text">주요 타겟 근육: 대흉근 (가슴)</p>
     `,
     muscleModel: {
-      tag: '[Image of human chest muscles exercise]', // 가슴 근육 운동 모형
+      // 🚩 벤치 프레스 이미지 (유지)
+      tag: '<img src="bench_press1.jpg" alt="벤치 프레스 타겟 근육 이미지" class="muscle-model-image">',
       explanation: `
         <h5>대흉근, 삼각근 (전면), 삼두근</h5>
         <p>벤치 프레스는 **대흉근(가슴 근육)**을 주 타겟으로 하며, 팔을 펴는 동작에 **삼두근**이, 안정과 보조에 **전면 삼각근**이 사용됩니다. 이 운동은 상체 미는 힘(Pushing Power)을 극대화하는 데 가장 효과적입니다.</p>
       `,
     },
+    // ✅ 새 속성 추가: 배경 이미지 파일명
+    backgroundImage: 'bench-press-bg',
   },
   {
-    id: 'lat-pulldown',
-    name: '랫 풀다운',
-    icon: 'fas fa-grip-lines-vertical',
-    description: '등을 넓게 만드는 데 필수적인 상체 당기기 운동입니다.',
-    videoUrl: 'https://www.youtube.com/embed/Z0o4SjA-P9g', // 임의의 YouTube 영상 URL
+    id: 'squat', // ID 변경
+    name: '스쿼트', // 이름 변경
+    icon: '', // 아이콘 제거 유지
+    description: '하체 근력과 코어를 동시에 강화하는 운동의 왕입니다.', // 설명 변경
+    // 🚩 수정: 스쿼트 영상 URL 변경
+    videoUrl: 'https://www.youtube.com/embed/MWjKQGoNW0U',
     instructions: `
       <ol>
-        <li>무릎 패드 아래에 허벅지를 단단히 고정하고, 바를 어깨너비보다 넓게 잡습니다.</li>
-        <li>가슴을 펴고 상체를 살짝 뒤로 기울입니다.</li>
-        <li>팔꿈치를 등 뒤쪽으로 끌어내린다는 느낌으로 바를 쇄골 쪽으로 당깁니다.</li>
-        <li>등 근육(광배근)의 수축을 느끼며 천천히 바를 올립니다.</li>
-        <li>**주의:** 팔의 힘보다는 등 근육의 수축에 집중하며, 허리가 과도하게 젖혀지지 않도록 복부에 힘을 줍니다.</li>
+        <li>바벨을 승모근 상부에 견착하고, 발은 어깨너비 또는 그보다 약간 넓게 벌립니다.</li>
+        <li>가슴을 펴고 시선은 전방을 유지하며, 무릎과 엉덩이를 동시에 굽혀 앉습니다.</li>
+        <li>무릎은 발끝과 같은 방향으로 벌리고, 허리가 말리지 않도록 코어에 힘을 줍니다.</li>
+        <li>허벅지가 바닥과 평행이 되거나 가능한 깊이까지 내려갑니다.</li>
+        <li>**주의:** 일어설 때 무릎이 안쪽으로 모이지 않도록 하며, 허리를 곧게 유지하는 것이 핵심입니다.</li>
       </ol>
-      <p class="highlight-text">주요 타겟 근육: 광배근 (등)</p>
-    `,
+      <p class="highlight-text">주요 타겟 근육: 대퇴사두근, 둔근 (허벅지 앞, 엉덩이)</p>
+    `, // 내용 변경
     muscleModel: {
-      tag: '[Image of human back muscles exercise]', // 등 근육 운동 모형
-      explanation: `
-        <h5>광배근, 대원근, 이두근</h5>
-        <p>랫 풀다운은 **광배근(등 근육)**을 주 타겟으로 합니다. 등 상부를 넓게 만드는 데 기여하며, 팔을 굽히는 동작에 **이두근**이 보조적으로 사용됩니다. 올바른 자세는 넓고 두꺼운 등의 발달에 핵심입니다.</p>
-      `,
-    },
-  },
-  {
-    id: 'leg-press',
-    name: '레그 프레스',
-    icon: 'fas fa-running',
-    description: '무릎 관절 부담을 줄이면서 하체 근육을 강화합니다.',
-    videoUrl: 'https://www.youtube.com/embed/WJ9G7r75-9c', // 임의의 YouTube 영상 URL
-    instructions: `
-      <ol>
-        <li>의자에 앉아 발을 플레이트에 어깨너비로 올립니다. (발 위치에 따라 타겟 근육이 달라짐)</li>
-        <li>안전 레버를 풀고, 무릎이 가슴 쪽으로 오도록 천천히 중량을 내립니다.</li>
-        <li>무릎이 발끝보다 앞으로 나가지 않도록 주의하며, 허리가 패드에서 뜨지 않는 범위까지만 내립니다.</li>
-        <li>허벅지(대퇴사두근)의 힘으로 플레이트를 강하게 밀어 올립니다.</li>
-        <li>**주의:** 무릎을 완전히 펴서 관절에 충격이 가지 않도록, 펴기 직전에 멈춥니다.</li>
-      </ol>
-      <p class="highlight-text">주요 타겟 근육: 대퇴사두근 (허벅지 앞)</p>
-    `,
-    muscleModel: {
-      tag: '[Image of human leg muscles exercise]', // 다리 근육 운동 모형
+      // 🚩 스쿼트 이미지 추가 (유지)
+      tag: '<img src="squat1.jpg" alt="스쿼트 타겟 근육 이미지" class="muscle-model-image">',
       explanation: `
         <h5>대퇴사두근, 둔근, 햄스트링</h5>
-        <p>레그 프레스는 **대퇴사두근(허벅지 앞쪽)**과 **둔근(엉덩이)**을 집중적으로 단련합니다. 발 위치를 높이면 **햄스트링**과 둔근에 더 집중할 수 있으며, 하체 전반적인 근력과 볼륨을 키우는 데 매우 효과적입니다.</p>
-      `,
+        <p>스쿼트는 **대퇴사두근(허벅지 앞쪽)**과 **둔근(엉덩이)**을 주 타겟으로 합니다. 전신 근육의 70% 이상을 사용하는 전신 운동이며, 강력한 하체 근력과 기초 대사량 증진에 가장 효과적인 운동입니다.</p>
+      `, // 내용 변경
     },
+    // ✅ 새 속성 추가
+    backgroundImage: 'squat-bg',
+  },
+  {
+    id: 'deadlift', // ID 변경
+    name: '데드리프트', // 이름 변경
+    icon: '', // 아이콘 제거 유지
+    description: '전신 후면 근육을 강화하는 최고의 전신 운동입니다.', // 설명 변경
+    // 🚩 수정: 데드리프트 영상 URL 변경
+    videoUrl: 'https://www.youtube.com/embed/XIxSN7OewtA',
+    instructions: `
+      <ol>
+        <li>바벨 앞에 서서 발은 골반 너비로 벌리고 정강이에 가깝게 붙입니다.</li>
+        <li>허리를 곧게 펴고(신전 유지), 엉덩이를 뒤로 빼면서 바를 잡습니다.</li>
+        <li>가슴을 펴고 광배근에 힘을 주어 바벨을 몸에 붙인다는 느낌으로 수직으로 들어 올립니다.</li>
+        <li>최고 지점에서 엉덩이를 조이고 어깨를 뒤로 젖히지 않도록 주의합니다.</li>
+        <li>**주의:** 허리가 굽어지지 않도록 자세를 완벽하게 유지하는 것이 중요하며, 무리한 중량은 피해야 합니다.</li>
+      </ol>
+      <p class="highlight-text">주요 타겟 근육: 둔근, 햄스트링, 광배근, 척추기립근</p>
+    `, // 내용 변경
+    muscleModel: {
+      // 🚩 데드리프트 이미지 추가 (유지)
+      tag: '<img src="dead_lift1.jpg" alt="데드리프트 타겟 근육 이미지" class="muscle-model-image">',
+      explanation: `
+        <h5>둔근, 햄스트링, 광배근, 척추기립근</h5>
+        <p>데드리프트는 **둔근, 햄스트링, 척추기립근** 등 후면 근육 사슬을 강화하며, **광배근**과 코어 근육도 사용됩니다. 전신 근력과 파워를 기르는 데 필수적인 운동이며, 올바른 자세는 부상 방지에 매우 중요합니다. </p>
+      `, // 내용 변경
+    },
+    // ✅ 새 속성 추가
+    backgroundImage: 'deadlift-bg',
   },
 ];
 
@@ -99,8 +111,8 @@ function renderEquipmentList() {
   const listHTML = equipmentData
     .map(
       (eq) => `
-        <div class="equipment-card" data-id="${eq.id}">
-            <div class="icon-placeholder"><i class="${eq.icon}"></i></div>
+        <div class="equipment-card ${eq.backgroundImage}" data-id="${eq.id}">
+            <div class="icon-placeholder"><i class="${eq.icon || ''}"></i></div>
             <h4>${eq.name}</h4>
             <p>${eq.description}</p>
         </div>
@@ -148,7 +160,7 @@ function showEquipmentDetail(id) {
   // 4. 운동 효과 및 신체 모형 (이미지 태그 및 설명) 업데이트
   const muscleModelArea = document.getElementById('detail-muscle-model');
   muscleModelArea.innerHTML = `
-    <p>${selectedEquipment.muscleModel.tag}</p>
+    ${selectedEquipment.muscleModel.tag} 
     <div class="muscle-group-description">
         ${selectedEquipment.muscleModel.explanation}
     </div>
