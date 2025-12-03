@@ -33,20 +33,20 @@ const notices = [
           <tbody>
             <tr>
               <td>1개월 이용권</td>
-              <td>100,000원</td>
-              <td>100,000원</td>
+              <td>10,000원</td>
+              <td>10,000원</td>
               <td>정상가</td>
             </tr>
             <tr>
               <td class="discount-item">3개월 묶음 이용권</td>
-              <td>300,000원</td>
-              <td>270,000원</td>
+              <td>30,000원</td>
+              <td>27,000원</td>
               <td>10% 할인</td>
             </tr>
             <tr>
               <td class="discount-item">6개월 묶음 이용권</td>
-              <td>600,000원</td>
-              <td>510,000원</td>
+              <td>60,000원</td>
+              <td>51,000원</td>
               <td>15% 할인</td>
             </tr>
           </tbody>
