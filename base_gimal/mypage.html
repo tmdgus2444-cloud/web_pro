@@ -3,13 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>👤 개인 페이지 - 상명대 K동 헬스장</title>
+    <title>개인 페이지 - 상명대 K동 헬스장</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mypage.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
   </head>
   <body>
     <header>
@@ -23,116 +18,69 @@
         <li><a href="introduce.html">센터 소개</a></li>
         <li><a href="notice.html">공지 사항</a></li>
         <li><a href="exercise.html">운동 안내</a></li>
-        <li><a href="mypage.html" class="active">개인 페이지</a></li>
+        <li>
+          <a href="mypage.html" class="active" id="mypage-link">개인 페이지</a>
+        </li>
         <li><a href="contact.html">고객 센터</a></li>
       </ul>
     </nav>
 
     <main id="mypage-main">
-      <h2>마이 페이지</h2>
-      <p class="description-text">
-        회원님의 이용권 정보와 개인 정보를 확인하고 수정할 수 있습니다.
-      </p>
+      <h2>👋 (이름)님, 환영합니다!</h2>
 
-      <section class="mypage-section membership-section">
-        <h3>🥇 이용권 정보</h3>
-        <div class="info-card membership-info">
-          <div class="info-item">
-            <i class="fas fa-ticket-alt icon"></i>
-            <h4>이용권 종류</h4>
-            <p id="membership-type">3개월 이용권</p>
+      <section class="mypage-section" id="status-section">
+        <h3>등록 현황</h3>
+        <div class="status-card-grid">
+          <div class="status-card">
+            <h4>회원권</h4>
+            <p id="membership-status">유효 기간: 2025.03.01 ~ 2025.03.31</p>
+            <p class="days-remaining">
+              <strong id="remaining-days">6일 남았습니다.</strong>
+            </p>
           </div>
-          <div class="info-item">
-            <i class="fas fa-calendar-alt icon"></i>
-            <h4>이용 기간</h4>
-            <p id="membership-period">2025-03-01 ~ 2025-05-30</p>
+
+          <div class="status-card locker-card">
+            <h4>사물함</h4>
+            <div id="locker-info">
+              <p>현재 비밀번호:</p>
+              <p class="locker-password">
+                <strong id="locker-code">1234</strong>
+              </p>
+            </div>
           </div>
-          <div class="info-item">
-            <i class="fas fa-check-circle icon"></i>
-            <h4>상태</h4>
-            <p class="status-active">이용 중</p>
-          </div>
-          <button
-            type="button"
-            id="logout-btn"
-            class="action-btn danger-btn logout-btn"
+        </div>
+      </section>
+
+      <section class="mypage-section" id="payment-section">
+        <h3>💰 온라인 결제 및 등록</h3>
+        <p class="payment-intro">
+          새로운 회원권을 등록하거나 기간을 연장할 수 있습니다.
+        </p>
+        <div id="payment-widget">
+          <a href="payment.html" class="payment-link-button"
+            >회원권/PT 등록 및 결제 페이지로 이동</a
           >
-            <i class="fas fa-sign-out-alt"></i> 로그아웃
-          </button>
         </div>
       </section>
 
-      <section class="mypage-section profile-section">
-        <h3>📝 개인 정보</h3>
-        <form id="profile-form" class="info-card profile-form">
-          <div class="profile-photo-area">
-            <img
-              src="https://placehold.co/120x120/007bff/white?text=User"
-              alt="프로필 사진"
-              id="profile-image"
-              class="profile-image"
-            />
-            <button
-              type="button"
-              id="change-photo-btn"
-              class="action-btn small-btn primary-btn"
-              style="display: none"
-            >
-              사진 변경 (Mock)
-            </button>
-          </div>
-
-          <div class="input-area">
-            <label for="user-id">ID (학번/교번)</label>
-            <input type="text" id="user-id" name="userId" readonly />
-
-            <label for="user-name">이름</label>
-            <input type="text" id="user-name" name="userName" readonly />
-
-            <label for="user-phone">연락처</label>
-            <input type="tel" id="user-phone" name="userPhone" readonly />
-
-            <label for="user-email">이메일</label>
-            <input type="email" id="user-email" name="userEmail" readonly />
-          </div>
-
-          <div class="button-group">
-            <button type="button" id="edit-btn" class="action-btn primary-btn">
-              수정
-            </button>
-            <button
-              type="submit"
-              id="save-btn"
-              class="action-btn success-btn"
-              style="display: none"
-            >
-              저장
-            </button>
-            <button
-              type="button"
-              id="cancel-btn"
-              class="action-btn danger-btn"
-              style="display: none"
-            >
-              취소
-            </button>
-          </div>
-        </form>
-      </section>
-
-      <section class="mypage-section workout-stats-section">
-        <h3>📊 주간 운동 통계 (Placeholder)</h3>
-        <div class="info-card stats-placeholder">
+      <section class="mypage-section" id="user-info-section">
+        <h3>개인 정보</h3>
+        <div class="info-details">
+          <p><strong>이름:</strong> <span id="user-name-info"></span></p>
+          <p><strong>연락처:</strong> <span id="user-phone-info"></span></p>
+          <p><strong>가입일:</strong> <span id="user-join-date-info"></span></p>
           <p>
-            초기 버전에서는 통계 기능을 준비 중입니다.
-            <br />
-            (JS에서 동적으로 그래프 또는 리스트가 표시될 예정)
+            <a href="#" class="action-button small">정보 수정</a>
           </p>
-          <div class="placeholder-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
         </div>
       </section>
+
+      <div
+        id="logout-container"
+        style="text-align: center; margin-top: 40px; padding-top: 20px"
+      >
+        <button id="logout-button" class="action-button">로그아웃</button>
+      </div>
     </main>
 
     <footer>
@@ -140,22 +88,5 @@
     </footer>
 
     <script src="mypage.js"></script>
-    <script>
-      // 로그아웃 버튼 이벤트 리스너 추가
-      document.addEventListener('DOMContentLoaded', () => {
-        const logoutBtn = document.getElementById('logout-btn');
-        if (logoutBtn) {
-          logoutBtn.addEventListener('click', () => {
-            // 로그인 상태를 'false'로 설정
-            localStorage.setItem('isLoggedIn', 'false');
-            // 'mypageUserData'도 초기화 또는 삭제 (선택 사항, 여기서는 삭제)
-            localStorage.removeItem('mypageUserData');
-            alert('로그아웃 되었습니다.');
-            // 메인 페이지로 이동 또는 로그인 페이지로 이동
-            window.location.href = 'main.html';
-          });
-        }
-      });
-    </script>
   </body>
 </html>

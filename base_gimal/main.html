@@ -18,7 +18,7 @@
         <li><a href="introduce.html">센터 소개</a></li>
         <li><a href="notice.html">공지 사항</a></li>
         <li><a href="exercise.html">운동 안내</a></li>
-        <li><a href="#" id="mypage-link">개인 페이지</a></li>
+        <li><a href="mypage.html" id="mypage-link">개인 페이지</a></li>
         <li><a href="contact.html">고객 센터</a></li>
       </ul>
     </nav>
@@ -48,26 +48,5 @@
     </footer>
 
     <script src="main.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const mypageLink = document.getElementById('mypage-link');
-        const LOGIN_KEY = 'isLoggedIn';
-
-        if (mypageLink) {
-          mypageLink.addEventListener('click', function (event) {
-            event.preventDefault(); // 기본 이동 동작 방지
-
-            const isLoggedIn = localStorage.getItem(LOGIN_KEY) === 'true';
-
-            if (isLoggedIn) {
-              window.location.href = 'mypage.html';
-            } else {
-              // 비로그인 상태면 login.html로 이동
-              window.location.href = 'login.html';
-            }
-          });
-        }
-      });
-    </script>
   </body>
 </html>

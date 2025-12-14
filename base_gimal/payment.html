@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>온라인 결제 - 상명대 K동 헬스장</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="main.html" class="header-link">
+        <h1>상명대 K동 헬스장</h1>
+      </a>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="introduce.html">센터 소개</a></li>
+        <li><a href="notice.html">공지 사항</a></li>
+        <li><a href="exercise.html">운동 안내</a></li>
+        <li><a href="mypage.html" class="active">개인 페이지</a></li>
+        <li><a href="contact.html">고객 센터</a></li>
+      </ul>
+    </nav>
+
+    <main id="payment-main">
+      <h2>💳 온라인 회원권 등록 및 결제</h2>
+
+      <div class="payment-container">
+        <form id="payment-form">
+          <fieldset class="payment-fieldset">
+            <legend>1. 기간 선택</legend>
+            <div class="input-group">
+              <label for="months">등록 개월 수:</label>
+              <select id="months" name="months" required>
+                <option value="" disabled selected>개월을 선택하세요</option>
+                <option value="1">1개월</option>
+                <option value="2">2개월</option>
+                <option value="3">3개월 (할인 적용)</option>
+                <option value="4">4개월</option>
+                <option value="5">5개월 (할인 적용)</option>
+                <option value="12">12개월 (할인 적용)</option>
+              </select>
+            </div>
+            <p class="price-note">
+              1개월 당 10,000원. (3개월 묶음당 1,000원 할인 적용) [cite: 220,
+              221]
+            </p>
+          </fieldset>
+
+          <fieldset class="payment-fieldset">
+            <legend>2. 결제 방법</legend>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="pay-card"
+                name="payment-method"
+                value="card"
+                required
+              />
+              <label for="pay-card">카드</label>
+              <input
+                type="radio"
+                id="pay-cash"
+                name="payment-method"
+                value="cash"
+              />
+              <label for="pay-cash">현금(계좌 이체)</label>
+              <input
+                type="radio"
+                id="pay-coupon"
+                name="payment-method"
+                value="coupon"
+              />
+              <label for="pay-coupon">쿠폰</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="payment-fieldset" id="coupon-area">
+            <legend>3. 쿠폰 등록</legend>
+            <div class="input-group coupon-input">
+              <input
+                type="text"
+                id="coupon-code"
+                placeholder="쿠폰 코드를 입력하세요 (20% 할인)"
+              />
+              <button
+                type="button"
+                id="apply-coupon-btn"
+                class="action-button small"
+              >
+                적용
+              </button>
+            </div>
+            <p id="coupon-message" class="coupon-note"></p>
+          </fieldset>
+
+          <section id="final-payment-info">
+            <h3>최종 결제 금액</h3>
+            <p>선택 기간 금액: <span id="base-price">0</span>원</p>
+            <p>할인 금액 (기간/쿠폰): <span id="discount-amount">0</span>원</p>
+            <p class="final-amount">
+              총 결제 금액: <strong id="total-price">0</strong>원
+            </p>
+
+            <button type="submit" class="pay-button action-button">
+              결제하기
+            </button>
+          </section>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 상명대 K동 헬스장. All rights reserved.</p>
+    </footer>
+
+    <script src="payment.js"></script>
+  </body>
+</html>

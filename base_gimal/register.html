@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입 - 상명대 K동 헬스장</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="main.html" class="header-link">
+        <h1>상명대 K동 헬스장</h1>
+      </a>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="introduce.html">센터 소개</a></li>
+        <li><a href="notice.html">공지 사항</a></li>
+        <li><a href="exercise.html">운동 안내</a></li>
+        <li><a href="mypage.html">개인 페이지</a></li>
+        <li><a href="contact.html">고객 센터</a></li>
+      </ul>
+    </nav>
+
+    <main id="register-main">
+      <div class="register-container">
+        <h2>회원가입</h2>
+        <form id="register-form">
+          <div class="input-group">
+            <label for="new-user-name">이름</label>
+            <input type="text" id="new-user-name" required />
+          </div>
+          <div class="input-group">
+            <label for="new-user-id">아이디 (6자 이상)</label>
+            <input type="text" id="new-user-id" required />
+          </div>
+          <div class="input-group">
+            <label for="new-user-pw">비밀번호 (8자 이상)</label>
+            <input type="password" id="new-user-pw" required />
+          </div>
+          <div class="input-group">
+            <label for="new-user-phone">연락처</label>
+            <input
+              type="tel"
+              id="new-user-phone"
+              placeholder="010-1234-5678"
+              required
+            />
+          </div>
+
+          <button type="submit" class="register-button">가입 완료</button>
+        </form>
+
+        <a href="login.html" class="login-link"
+          >이미 계정이 있으신가요? 로그인</a
+        >
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 상명대 K동 헬스장. All rights reserved.</p>
+    </footer>
+
+    <script src="register.js"></script>
+  </body>
+</html>

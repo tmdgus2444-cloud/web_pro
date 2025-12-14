@@ -8,7 +8,6 @@
 const mainEvent = {
   title: '🔥 3월 신규 등록 할인 코드 이벤트!',
   icon: '🔑',
-  // 🌟 원래대로 돌아감: 할인 코드 ('X-mas')를 제거하고 일반적인 문구로 변경
   details:
     '등록 시 **공지사항**에 있는 할인 코드를 제시하면 **모든 프로그램 10% 추가 할인!** (선착순 50명)',
   duration: '2025년 3월 1일 ~ 3월 31일',
@@ -22,21 +21,22 @@ const recruitmentNotice = {
   contact: '문의: 041-555-1234',
 };
 
-// 1-3. 간략 트레이너 데이터 (ID 및 사진 파일명 업데이트)
+// 1-3. 간략 트레이너 데이터 (ID 및 사진 파일명 복구 완료)
 const trainers = [
   {
-    id: 'seunghyun', // ID를 사용하여 introduce.html로 링크
+    id: 'seunghyun', // 이승현 트레이너
     name: '이승현 트레이너',
-    photo: 'lee.jpg', // 🌟 수정: 'lee.jpg'
+    photo: 'lee.jpg',
     tagline: '🔥 웨이트 트레이닝 전문',
     description:
       '올바른 자세는 곧 부상 방지입니다. 체계적인 프로그램으로 당신의 잠재력을 깨워드리겠습니다.',
     certs: ['🏆 생활스포츠지도사 2급', '🏋️ 근력 강화/'],
   },
+  // ⭐ 복구 완료: 윤준서 트레이너 ⭐
   {
-    id: 'yoon', // 🌟 수정: 'junseo' -> 'yoon' (introduce.js와 일치시켜 스크롤 연결)
+    id: 'yoon', // 'yoon'으로 설정
     name: '윤준서 트레이너',
-    photo: 'yoon.jpg', // 🌟 수정: 'yoon.jpg'
+    photo: 'yoon.jpg',
     tagline: '🏃‍♀️ 다이어트 및 체형 교정 전문',
     description:
       '무리 없는 다이어트와 바른 자세를 위한 맞춤 코칭을 제공합니다. 건강한 라이프스타일을 함께 만들어가요.',

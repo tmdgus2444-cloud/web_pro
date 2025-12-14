@@ -1,206 +1,111 @@
 // mypage.js
 
-/* ==================================================== */
-/* 1. 데이터 정의 (Mock Data) 및 로컬 스토리지 관리 함수 */
-/* ==================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const LOGIN_KEY = 'isLoggedIn';
+  const CURRENT_USER_KEY = 'currentUser';
 
-// 현재 날짜를 YYYY-MM-DD 형식으로 반환
-function getFormattedDate(date) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, '0');
-  const d = String(date.getDate()).padStart(2, '0');
-  return `${y}-${m}-${d}`;
-}
+  // 1. 로그인 상태 확인 및 사용자 정보 로드
+  const isLoggedIn = localStorage.getItem(LOGIN_KEY) === 'true';
+  const currentUser = JSON.parse(localStorage.getItem(CURRENT_USER_KEY));
 
-// 만료일 (현재 날짜 기준 30일 후로 설정)
-const today = new Date();
-const endDateObj = new Date(today);
-endDateObj.setDate(today.getDate() + 30);
-const endDateStr = getFormattedDate(endDateObj);
-
-// 기본 Mock User Data (최초 앱 사용 시 사용)
-const DEFAULT_USER_DATA = {
-  id: '20221234',
-  name: '홍길동',
-  phone: '010-1234-5678',
-  email: 'hong.gildong@sm.ac.kr',
-  membership: {
-    type: '3개월 이용권',
-    startDate: getFormattedDate(today),
-    endDate: endDateStr,
-  },
-  profilePhoto: 'https://placehold.co/120x120/007bff/white?text=User',
-};
-
-// 🌟 [추가/수정] localStorage에서 데이터를 로드하거나 기본 데이터를 사용합니다.
-let userData = loadUserData();
-
-/**
- * 1-1. localStorage에서 사용자 데이터를 로드합니다.
- * 저장된 데이터가 없으면 기본 데이터를 반환하고 저장합니다.
- */
-function loadUserData() {
-  const storedData = localStorage.getItem('mypageUserData');
-  if (storedData) {
-    return JSON.parse(storedData);
-  } else {
-    // 저장된 데이터가 없으면 기본 데이터를 저장하고 반환
-    saveUserData(DEFAULT_USER_DATA);
-    return DEFAULT_USER_DATA;
-  }
-}
-
-/**
- * 1-2. 현재 사용자 데이터를 localStorage에 저장합니다.
- * @param {object} data - 저장할 사용자 데이터 객체
- */
-function saveUserData(data) {
-  localStorage.setItem('mypageUserData', JSON.stringify(data));
-  userData = data; // 전역 userData 변수도 업데이트
-}
-
-/* ==================================================== */
-/* 2. DOM 요소 및 전역 변수 */
-/* ==================================================== */
-
-// ... (이 부분은 이전과 동일하며 생략합니다)
-
-const profileForm = document.getElementById('profile-form');
-const editBtn = document.getElementById('edit-btn');
-const saveBtn = document.getElementById('save-btn');
-const cancelBtn = document.getElementById('cancel-btn');
-const changePhotoBtn = document.getElementById('change-photo-btn');
-
-/* ==================================================== */
-/* 3. 함수 정의 */
-/* ==================================================== */
-
-/**
- * 3-1. 사용자 정보를 입력 필드에 렌더링하고 멤버십 정보를 표시합니다.
- */
-function renderUserInfo() {
-  // 멤버십 정보 표시
-  document.getElementById('membership-type').textContent =
-    userData.membership.type;
-  document.getElementById(
-    'membership-period'
-  ).textContent = `${userData.membership.startDate} ~ ${userData.membership.endDate}`;
-
-  // 프로필 이미지 업데이트
-  document.getElementById('profile-image').src = userData.profilePhoto;
-
-  // 개인 정보 입력 필드 업데이트
-  document.getElementById('user-id').value = userData.id;
-  document.getElementById('user-name').value = userData.name;
-  document.getElementById('user-phone').value = userData.phone;
-  document.getElementById('user-email').value = userData.email;
-}
-
-// ... (toggleEditMode, handleEditClick, handleCancelClick, handleChangePhotoClick 함수는 이전과 동일하며 생략합니다)
-
-/**
- * 3-4. '저장' 버튼 클릭 핸들러: 변경된 정보를 저장하고 모드를 토글합니다.
- * 🌟 [수정] 변경된 데이터를 localStorage에 저장하는 로직이 추가되었습니다.
- */
-profileForm.addEventListener('submit', function (event) {
-  event.preventDefault();
-
-  // 1. 폼 데이터 읽기
-  const newPhone = document.getElementById('user-phone').value;
-  const newEmail = document.getElementById('user-email').value;
-  const newName = document.getElementById('user-name').value;
-
-  // 2. 데이터 유효성 검사 (간단한 예시)
-  if (!newPhone || !newEmail || !newName) {
-    alert('모든 필드를 입력해주세요.');
+  // 2. 로그인되지 않았거나 사용자 정보가 없을 경우 로그인 페이지로 리다이렉트
+  if (!isLoggedIn || !currentUser) {
+    alert('로그인이 필요합니다.');
+    // 현재 페이지가 mypage.html이라고 가정하고, login.html로 이동시킵니다.
+    window.location.href = 'login.html';
     return;
   }
 
-  // 3. 🌟 새로운 객체를 생성하고 userData를 업데이트합니다.
-  const newUserData = {
-    ...userData, // 기존 데이터 유지 (id, membership 등)
-    name: newName,
-    phone: newPhone,
-    email: newEmail,
-  };
+  // 3. 페이지 렌더링 함수
+  function renderMyPage(user) {
+    // 3-1. 이름 업데이트
+    const userNameElements = document.querySelectorAll(
+      '#mypage-main h2, #user-name-info'
+    );
+    userNameElements.forEach((el) => {
+      // "👋 (이름)님, 환영합니다!" 업데이트
+      if (el.id === 'user-name-info') {
+        el.textContent = user.name;
+      } else if (el.tagName === 'H2') {
+        el.innerHTML = `👋 ${user.name}님, 환영합니다!`;
+      }
+    });
 
-  // 4. 🌟 localStorage에 저장
-  saveUserData(newUserData);
+    // 3-2. 개인 정보 업데이트
+    document.getElementById('user-phone-info').textContent = user.phone;
+    document.getElementById('user-join-date-info').textContent = user.joinDate;
 
-  // 5. 편집 모드 종료
-  toggleEditMode(false);
+    // 3-3. 회원권 상태 업데이트
+    const membership = user.membership;
 
-  // 6. 사용자에게 알림
-  alert('✅ 개인 정보가 성공적으로 저장되었습니다!');
-});
+    if (membership && membership.endDate) {
+      // 오늘 날짜와 종료일의 시간 부분을 00:00:00으로 설정하여 정확한 일수 차이 계산
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
 
-/* ==================================================== */
-/* 4. 초기화 및 이벤트 리스너 설정 */
-/* ==================================================== */
+      const endDate = new Date(membership.endDate);
+      endDate.setHours(0, 0, 0, 0);
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderUserInfo(); // 페이지 로드 시 로컬 스토리지 또는 기본 데이터로 정보 렌더링
+      const timeDiff = endDate.getTime() - today.getTime();
+      // Math.ceil을 사용하여 오늘 이후 하루라도 남아있으면 1일로 계산
+      const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-  // 이벤트 리스너 설정
-  editBtn.addEventListener('click', handleEditClick);
-  cancelBtn.addEventListener('click', handleCancelClick);
-  changePhotoBtn.addEventListener('click', handleChangePhotoClick);
-});
+      const statusElement = document.getElementById('membership-status');
+      const remainingElement = document.getElementById('remaining-days');
 
-// 나머지 함수 (toggleEditMode 등)는 그대로 유지
+      // startDate가 없으면 user.joinDate를 사용 (기존 사용자 대비)
+      const startDateString = membership.startDate || user.joinDate;
 
-/**
- * 3-2. 편집 모드와 보기 모드를 전환합니다.
- * @param {boolean} isEditing - 편집 모드인지 여부 (true/false)
- */
-function toggleEditMode(isEditing) {
-  const inputFields = profileForm.querySelectorAll('input:not(#user-id)');
+      if (daysRemaining > 0) {
+        statusElement.textContent = `유효 기간: ${startDateString} ~ ${membership.endDate}`;
+        remainingElement.textContent = `${daysRemaining}일 남았습니다.`;
+        remainingElement.style.color =
+          daysRemaining < 7 ? '#ff5722' : '#007bff'; // 7일 미만이면 주황색 강조
+      } else if (daysRemaining === 0) {
+        // 만료일이 오늘인 경우
+        statusElement.textContent = `유효 기간: ${startDateString} ~ ${membership.endDate}`;
+        remainingElement.textContent = '오늘 만료됩니다.';
+        remainingElement.style.color = 'orange';
+      } else {
+        // daysRemaining이 음수이면 만료됨
+        statusElement.textContent = `유효 기간이 만료되었습니다.`;
+        remainingElement.textContent = '만료됨';
+        remainingElement.style.color = 'red';
+      }
 
-  // 1. 입력 필드 readonly 속성 토글
-  inputFields.forEach((input) => {
-    input.readOnly = !isEditing;
-  });
-
-  // 2. 버튼 가시성 토글
-  editBtn.style.display = isEditing ? 'none' : 'block';
-  saveBtn.style.display = isEditing ? 'block' : 'none';
-  cancelBtn.style.display = isEditing ? 'block' : 'none';
-
-  // 3. 사진 변경 버튼 가시성 토글
-  changePhotoBtn.style.display = isEditing ? 'block' : 'none';
-}
-
-/**
- * 3-5. '수정' 버튼 클릭 핸들러: 편집 모드 시작
- */
-function handleEditClick() {
-  if (editBtn.style.display !== 'none') {
-    toggleEditMode(true);
+      // 3-4. 사물함 정보 업데이트
+      if (membership.lockerCode) {
+        document.getElementById('locker-code').textContent =
+          membership.lockerCode;
+      } else {
+        // 회원권은 있으나 사물함 코드가 없는 경우
+        document.getElementById('locker-info').innerHTML =
+          '<p>등록된 사물함이 없습니다.</p><p class="days-remaining"><strong style="color: gray;">사물함을 등록하세요.</strong></p>'; // ⭐ 수정된 부분 1: days-remaining 클래스와 gray 색상 적용
+      }
+    } else {
+      // 회원권 정보가 없을 경우 처리 (회원가입만 한 경우)
+      document.getElementById('membership-status').textContent =
+        '등록된 회원권이 없습니다.';
+      document.getElementById('remaining-days').textContent = '등록 필요';
+      document.getElementById('remaining-days').style.color = 'gray'; // 이 부분이 '등록 필요'의 색상을 설정합니다.
+      document.getElementById('locker-info').innerHTML =
+        '<p>사물함 정보 없음</p><p class="days-remaining"><strong style="color: gray;">사물함을 등록하세요.</strong></p>'; // ⭐ 수정된 부분 2: days-remaining 클래스와 gray 색상 적용
+    }
   }
-}
 
-/**
- * 3-6. '취소' 버튼 클릭 핸들러: 편집 모드 종료 및 원본 데이터 복원
- */
-function handleCancelClick() {
-  // 원본 데이터로 입력 필드 복원
-  renderUserInfo();
-  toggleEditMode(false);
-}
+  // 4. 페이지 렌더링 실행
+  renderMyPage(currentUser);
 
-/**
- * 3-7. '사진 변경' 버튼 클릭 핸들러 (Mock 기능)
- */
-function handleChangePhotoClick() {
-  // 실제 파일 업로드 기능 대신 임의의 사진으로 변경
-  const randomColor = Math.floor(Math.random() * 16777215)
-    .toString(16)
-    .padStart(6, '0');
-  const newPhotoUrl = `https://placehold.co/120x120/${randomColor}/white?text=New`;
+  // 5. 로그아웃 기능
+  const logoutButton = document.getElementById('logout-button');
+  if (logoutButton) {
+    logoutButton.addEventListener('click', () => {
+      // 로그인 상태 및 현재 사용자 정보 삭제
+      localStorage.removeItem(LOGIN_KEY);
+      localStorage.removeItem(CURRENT_USER_KEY);
 
-  // userData 객체와 DOM 모두 업데이트
-  userData.profilePhoto = newPhotoUrl;
-  document.getElementById('profile-image').src = newPhotoUrl;
-
-  alert('프로필 사진이 임시로 변경되었습니다. 저장을 눌러 적용하세요.');
-}
+      alert('로그아웃 되었습니다.');
+      window.location.href = 'login.html'; // 로그인 페이지로 리다이렉트
+    });
+  }
+});

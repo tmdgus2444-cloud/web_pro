@@ -1,48 +1,82 @@
-/* login.js */
+// login.js
 
-/* 가상 로그인 로직 (JS) */
-const LOGIN_KEY = 'isLoggedIn'; // 로그인 상태를 저장하는 키
+const LOGIN_KEY = 'isLoggedIn';
+const CURRENT_USER_KEY = 'currentUser';
+const REGISTERED_USERS_KEY = 'registeredUsers';
 
-document
-  .getElementById('login-form')
-  .addEventListener('submit', function (event) {
-    event.preventDefault(); // 기본 폼 제출 동작 방지
+// ⭐ 요청하신 기본 사용자 데이터 (mypage에서 사용될 상세 정보 포함) ⭐
+const DEFAULT_USER_DATA = {
+  id: 'smgym',
+  pw: 'sm1234',
+  name: '홍길동',
+  phone: '010-1234-5678',
+  joinDate: '2025.03.01',
+  // 회원권과 사물함 정보를 포함하는 객체로 구성
+  membership: {
+    endDate: '2026-01-01',
+    lockerCode: '1234',
+    status: '유효',
+    // (참고: 남은 일수는 mypage.js에서 동적으로 계산하는 것이 좋습니다.)
+  },
+};
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const errorMsg = document.getElementById('error-msg');
+/**
+ * localStorage에 등록된 사용자가 없을 경우 기본 사용자 데이터를 초기화합니다.
+ */
+function initializeDefaultUser() {
+  const users = JSON.parse(localStorage.getItem(REGISTERED_USERS_KEY));
+  if (!users || users.length === 0) {
+    // 기본 사용자 데이터를 배열에 담아 저장합니다.
+    localStorage.setItem(
+      REGISTERED_USERS_KEY,
+      JSON.stringify([DEFAULT_USER_DATA])
+    );
+    console.log('기본 사용자(smgym) 데이터가 localStorage에 초기화되었습니다.');
+  }
+}
 
-    // 모든 에러 메시지 초기화
-    errorMsg.style.display = 'none';
+document.addEventListener('DOMContentLoaded', () => {
+  // 페이지 로드 시 기본 사용자 데이터 초기화 시도
+  initializeDefaultUser();
 
-    // --- 가상 인증 로직 ---
-    // 1. 기본 테스트 ID/PW: 'test' / '1234'
-    const defaultId = 'test';
-    const defaultPw = '1234';
+  const loginForm = document.getElementById('login-form');
 
-    // 2. 회원가입에서 저장한 임시 ID/PW를 가져옵니다.
-    const tempId = localStorage.getItem('tempSignupId');
-    const tempPw = localStorage.getItem('tempSignupPw');
+  if (loginForm) {
+    loginForm.addEventListener('submit', function (event) {
+      event.preventDefault(); // 폼 기본 제출 방지
 
-    // 로그인 성공 조건:
-    // a. 기본 테스트 계정 일치
-    // b. 또는 회원가입으로 임시 저장된 계정 일치
-    if (
-      (username === defaultId && password === defaultPw) ||
-      (username === tempId && password === tempPw)
-    ) {
-      // 로그인 성공: localStorage에 상태 저장
-      localStorage.setItem(LOGIN_KEY, 'true');
+      const userId = document.getElementById('user-id').value;
+      const userPw = document.getElementById('user-pw').value;
 
-      // 마이페이지로 이동
-      window.location.href = 'mypage.html';
-    } else {
-      // 로그인 실패
-      errorMsg.style.display = 'block';
+      // 1. localStorage에서 등록된 사용자 데이터 로드
+      const users =
+        JSON.parse(localStorage.getItem(REGISTERED_USERS_KEY)) || [];
 
-      // 3초 후 에러 메시지 숨기기
-      setTimeout(() => {
-        errorMsg.style.display = 'none';
-      }, 3000);
-    }
-  });
+      // 2. 사용자 인증: ID와 PW가 모두 일치하는 사용자 찾기
+      const foundUser = users.find(
+        (user) => user.id === userId && user.pw === userPw
+      );
+
+      if (foundUser) {
+        // 3. 로그인 성공 처리
+        localStorage.setItem(LOGIN_KEY, 'true');
+
+        // 비밀번호를 제외한 현재 사용자 정보만 localStorage에 저장 (세션 역할)
+        const userDataToStore = {
+          id: foundUser.id,
+          name: foundUser.name,
+          phone: foundUser.phone,
+          joinDate: foundUser.joinDate,
+          membership: foundUser.membership || null, // 기본 사용자 정보는 null이 아닐 수 있음
+        };
+        localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(userDataToStore));
+
+        alert(`${foundUser.name}님, 로그인에 성공했습니다.`);
+        // 개인 페이지로 리다이렉트
+        window.location.href = 'mypage.html';
+      } else {
+        alert('아이디 또는 비밀번호가 올바르지 않습니다. 다시 확인해주세요.');
+      }
+    });
+  }
+});
