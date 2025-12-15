@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔒 로그인 - 상명대 K동 헬스장</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* login.html 전용 스타일 */
+      #login-main {
+        max-width: 400px;
+        margin: 100px auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      #login-main h2 {
+        color: #007bff;
+        margin-bottom: 30px;
+        font-size: 28px;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      .input-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #555;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        margin-top: 10px;
+      }
+
+      .login-btn:hover {
+        background-color: #0056b3;
+      }
+
+      .error-message {
+        color: #dc3545;
+        margin-top: 15px;
+        font-weight: bold;
+        display: none;
+      }
+
+      /* ✅ 추가된 스타일: 회원가입 버튼/링크 스타일 */
+      .signup-prompt {
+        margin-top: 25px;
+        font-size: 16px;
+        color: #777;
+      }
+
+      .signup-link {
+        color: #ff5722; /* 강조 색상 사용 */
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.2s;
+        margin-left: 5px;
+      }
+
+      .signup-link:hover {
+        color: #cc441b;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="main.html" class="header-link">
+        <h1>상명대 K동 헬스장</h1>
+      </a>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="introduce.html">센터 소개</a></li>
+        <li><a href="notice.html">공지 사항</a></li>
+        <li><a href="exercise.html">운동 안내</a></li>
+        <li><a href="#" id="mypage-link">개인 페이지</a></li>
+        <li><a href="contact.html">고객 센터</a></li>
+      </ul>
+    </nav>
+
+    <main id="login-main">
+      <h2>회원 로그인</h2>
+      <form id="login-form">
+        <div class="input-group">
+          <label for="username">ID (학번/교번)</label>
+          <input type="text" id="username" required />
+        </div>
+        <div class="input-group">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" required />
+        </div>
+        <button type="submit" class="login-btn">로그인</button>
+        <p class="error-message" id="error-msg">
+          ID 또는 비밀번호가 올바르지 않습니다.
+        </p>
+      </form>
+      <p class="signup-prompt">
+        계정이 없으신가요?
+        <a href="signup.html" class="signup-link">회원가입</a>
+      </p>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 상명대 K동 헬스장. All rights reserved.</p>
+    </footer>
+
+    <script src="login.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const mypageLink = document.getElementById('mypage-link');
+        const LOGIN_KEY = 'isLoggedIn';
+
+        if (mypageLink) {
+          mypageLink.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const isLoggedIn = localStorage.getItem(LOGIN_KEY) === 'true';
+
+            if (isLoggedIn) {
+              window.location.href = 'mypage.html';
+            } else {
+              window.location.href = 'login.html';
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💪 상명대 K동 헬스장 - 메인 페이지</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="main.html" class="header-link">
+        <h1>상명대 K동 헬스장</h1>
+      </a>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="introduce.html">센터 소개</a></li>
+        <li><a href="notice.html">공지 사항</a></li>
+        <li><a href="exercise.html">운동 안내</a></li>
+        <li><a href="#" id="mypage-link">개인 페이지</a></li>
+        <li><a href="contact.html">고객 센터</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="main-content">
+        <h2>Alright!</h2>
+        <p>우리 모두 운동을 시작해보아요!!</p>
+      </section>
+
+      <section id="event-section">
+        <h3>📢 진행 중인 이벤트</h3>
+        <div class="event-list"></div>
+      </section>
+
+      <section id="trainer-section">
+        <h3>💪 트레이너 소개 (간략)</h3>
+        <div class="trainer-list"></div>
+        <p class="trainer-more-link">
+          <a href="introduce.html#trainers">더 많은 트레이너 보기 &raquo;</a>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 상명대 K동 헬스장. All rights reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const mypageLink = document.getElementById('mypage-link');
+        const LOGIN_KEY = 'isLoggedIn';
+
+        if (mypageLink) {
+          mypageLink.addEventListener('click', function (event) {
+            event.preventDefault(); // 기본 이동 동작 방지
+
+            const isLoggedIn = localStorage.getItem(LOGIN_KEY) === 'true';
+
+            if (isLoggedIn) {
+              window.location.href = 'mypage.html';
+            } else {
+              // 비로그인 상태면 login.html로 이동
+              window.location.href = 'login.html';
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
